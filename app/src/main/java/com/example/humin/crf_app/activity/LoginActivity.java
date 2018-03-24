@@ -11,11 +11,13 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.humin.crf_app.R;
+import com.example.humin.crf_app.api.ApiUtils;
 import com.example.humin.crf_app.app_events.AppEvents;
 import com.example.humin.crf_app.fragments.LoginFragment;
 import com.example.humin.crf_app.util.GlobalBus;
 
 import org.greenrobot.eventbus.Subscribe;
+
 
 /**
  * Created by humin on 3/24/2018.
@@ -69,8 +71,14 @@ public class LoginActivity extends AppCompatActivity{
 
     @Subscribe
     public void login(AppEvents.Login login) {
-        Toast.makeText(mContext,"Username: "+login.getUserCredentials().getUsername(),Toast.LENGTH_SHORT).show();
-        Toast.makeText(mContext,"Password: "+login.getUserCredentials().getPassword(),Toast.LENGTH_SHORT).show();
+        ApiUtils.submitCredentials(mContext, login.getUserCredentials(), response -> {
+            mProgressBar.setVisibility(View.GONE);
+            Toast.makeText(mContext, R.string.successful_request,Toast.LENGTH_LONG).show();
+        }, error -> {
+            mProgressBar.setVisibility(View.GONE);
+            Toast.makeText(mContext,getString(R.string.error_request,error.toString()),Toast.LENGTH_LONG).show();
+        });
+
     }
 
     @Override

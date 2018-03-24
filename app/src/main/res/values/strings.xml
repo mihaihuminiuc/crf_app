@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TmeTestApp</string>
+    <string name="app_name">CRF_TEST_APP</string>
     <string name="string_title">Wallpapers</string>
     <string name="json_key_wallpapers">wallpapers</string>
     <string name="fragment_1">FRAGMENT_1</string>
@@ -17,5 +17,7 @@
     <string name="username_string">username</string>
     <string name="password_string">password</string>
     <string name="login_title">LOGIN</string>
+    <string name="successful_request">All good</string>
+    <string name="error_request">Error: %1$s</string>
 
 </resources>
