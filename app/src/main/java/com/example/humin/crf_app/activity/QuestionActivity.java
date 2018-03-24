@@ -76,4 +76,9 @@ public class QuestionActivity extends AppCompatActivity {
             Toast.makeText(mContext,"Error:"+error.toString(),Toast.LENGTH_LONG).show();
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        this.finish();
+    }
 }

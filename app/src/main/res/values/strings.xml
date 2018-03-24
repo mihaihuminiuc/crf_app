@@ -14,5 +14,8 @@
     <string name="activity_questions">ACTIVITY_QUESTIONS</string>
     <string name="questions">Questions</string>
     <string name="send_text">SEND</string>
+    <string name="username_string">username</string>
+    <string name="password_string">password</string>
+    <string name="login_title">LOGIN</string>
 
 </resources>

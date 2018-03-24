@@ -37,6 +37,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
+        <Button
+            android:padding="@dimen/gird_item_margin_yellow"
+            android:id="@+id/button_4"
+            android:text="@string/login_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

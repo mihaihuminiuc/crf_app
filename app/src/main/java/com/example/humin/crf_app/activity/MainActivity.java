@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private Context mContext;
 
-    private Button mButtonActivity1, mButtonActivity2, mButtonActivity3;
+    private Button mButtonActivity1, mButtonActivity2, mButtonActivity3, mButtonActivity4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +30,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mButtonActivity1 = findViewById(R.id.button_1);
         mButtonActivity2 = findViewById(R.id.button_2);
         mButtonActivity3 = findViewById(R.id.button_3);
+        mButtonActivity4 = findViewById(R.id.button_4);
 
         mButtonActivity1.setOnClickListener(this);
         mButtonActivity2.setOnClickListener(this);
         mButtonActivity3.setOnClickListener(this);
+        mButtonActivity4.setOnClickListener(this);
     }
 
     @Override
@@ -50,6 +52,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.button_3:
                 i = new Intent(mContext, QuestionActivity.class);
+                startActivity(i);
+                break;
+            case R.id.button_4:
+                i = new Intent(mContext, LoginActivity.class);
                 startActivity(i);
                 break;
         }

@@ -44,5 +44,7 @@ dependencies {
     compile "com.android.support.constraint:constraint-layout:$rootProject.constraint"
     compile "com.github.satyan:sugar:$rootProject.SugarORM"
 
+    compile "org.greenrobot:eventbus:$rootProject.EventBuss"
+
     androidTestCompile 'junit:junit:4.12'
 }

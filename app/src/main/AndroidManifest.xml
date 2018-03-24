@@ -40,6 +40,10 @@
             android:name=".activity.QuestionActivity"
             android:theme="@style/AppTheme" />
 
+        <activity
+            android:name=".activity.LoginActivity"
+            android:theme="@style/AppTheme" />
+
     </application>
 
 </manifest>
