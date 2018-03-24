@@ -30,7 +30,7 @@ public class WallpaperActivity3Row extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.row_3_activity);
+        setContentView(R.layout.row_wallpaper_3_activity);
         mContext=getApplicationContext();
 
         initFragment();

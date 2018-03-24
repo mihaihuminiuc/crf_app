@@ -10,4 +10,9 @@
     <string name="click_me_button_text">CLICK ME</string>
     <string name="button_click_toast_message">button was clicked</string>
     <string name="key_my_list">my_list</string>
+    <string name="question_item">%1$d. %2$s</string>
+    <string name="activity_questions">ACTIVITY_QUESTIONS</string>
+    <string name="questions">Questions</string>
+    <string name="send_text">SEND</string>
+
 </resources>

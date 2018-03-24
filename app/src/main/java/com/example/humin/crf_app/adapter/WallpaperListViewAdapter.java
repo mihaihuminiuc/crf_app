@@ -9,12 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.humin.crf_app.R;
-import com.example.humin.crf_app.holder.ListViewHolder;
+import com.example.humin.crf_app.holder.WallpaperListViewHolder;
 import com.example.humin.crf_app.listener.WallpaperListClickListener;
 import com.example.humin.crf_app.model.WallpaperList;
 import com.example.humin.crf_app.util.CommonUtils;
 
-public class ListViewAdapter extends RecyclerView.Adapter{
+public class WallpaperListViewAdapter extends RecyclerView.Adapter{
 
     private WallpaperList wallpapers = new WallpaperList();
     private WallpaperListClickListener mWallpaperListClickListener;
@@ -26,7 +26,7 @@ public class ListViewAdapter extends RecyclerView.Adapter{
 
     private Point mScreenDimensions;
 
-    public ListViewAdapter(final WallpaperList wallpapers, int type, Context context, WallpaperListClickListener listener) {
+    public WallpaperListViewAdapter(final WallpaperList wallpapers, int type, Context context, WallpaperListClickListener listener) {
         if (wallpapers != null) {
             this.wallpapers = wallpapers;
         }
@@ -40,12 +40,12 @@ public class ListViewAdapter extends RecyclerView.Adapter{
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         final View view = LayoutInflater.from(parent.getContext()).inflate(viewType, parent, false);
-        return new ListViewHolder(view);
+        return new WallpaperListViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        ((ListViewHolder) holder).bindData(wallpapers.getWallpapers().get(position), mType, mContext, mScreenDimensions,mWallpaperListClickListener);
+        ((WallpaperListViewHolder) holder).bindData(wallpapers.getWallpapers().get(position), mType, mContext, mScreenDimensions,mWallpaperListClickListener);
     }
 
     @Override
@@ -55,7 +55,7 @@ public class ListViewAdapter extends RecyclerView.Adapter{
 
     @Override
     public int getItemViewType(final int position) {
-        return R.layout.list_item;
+        return R.layout.wallpaper_list_item;
     }
 
     public void updateList(WallpaperList wallpapers){

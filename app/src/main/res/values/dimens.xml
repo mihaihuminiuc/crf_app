@@ -3,4 +3,13 @@
     <dimen name="text_size_medium_big" >25sp</dimen>
     <dimen name="gird_item_margin_yellow">5.5dp</dimen>
     <dimen name="margin_bottom_fab">15dp</dimen>
+
+    <dimen name="text_size_dimen_hugh">20sp</dimen>
+    <dimen name="text_size_dimen_large">16sp</dimen>
+    <dimen name="text_size_dimen_medium_large">14sp</dimen>
+    <dimen name="text_size_dimen_medium">12sp</dimen>
+    <dimen name="text_size_dimen_medium_small">10sp</dimen>
+    <dimen name="text_size_dimen_small">8sp</dimen>
+    <dimen name="text_size_dimen_ssmall">7sp</dimen>
+    <dimen name="margin_small">10dp</dimen>
 </resources>

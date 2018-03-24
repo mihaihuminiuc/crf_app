@@ -13,13 +13,13 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.humin.crf_app.R;
-import com.example.humin.crf_app.adapter.ListViewAdapter;
+import com.example.humin.crf_app.adapter.WallpaperListViewAdapter;
 import com.example.humin.crf_app.database.WallpaperDB;
 import com.example.humin.crf_app.listener.WallpaperListClickListener;
 import com.example.humin.crf_app.model.Wallpaper;
 import com.example.humin.crf_app.model.WallpaperList;
 import com.example.humin.crf_app.model.PreferenceUtilModel;
-import com.example.humin.crf_app.util.PreferencesUtils;
+import com.example.humin.crf_app.util.shared_preference.PreferencesUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,13 +29,12 @@ import java.util.Random;
  * Created by humin on 3/23/2018.
  */
 
-public class ThreeRowFragment extends Fragment implements View.OnClickListener{
+public class ThreeRowFragment extends Fragment implements View.OnClickListener, WallpaperListClickListener{
 
     private RecyclerView recyclerView;
     private WallpaperList mWallpapersList;
     private List<Wallpaper> mWallpaper;
-    private ListViewAdapter adapter;
-    private WallpaperListClickListener mWallpaperListClickListener;
+    private WallpaperListViewAdapter adapter;
     private FloatingActionButton mFloatingActionButton;
     private Context mContext;
     private PreferenceUtilModel mPreferenceUtilModel;
@@ -49,7 +48,7 @@ public class ThreeRowFragment extends Fragment implements View.OnClickListener{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.row_3_fragment, container, false);
+        return inflater.inflate(R.layout.row_wallpaper_3_fragment, container, false);
     }
 
     @Override
@@ -68,8 +67,6 @@ public class ThreeRowFragment extends Fragment implements View.OnClickListener{
     }
 
     private void setupList(View view){
-        mWallpaperListClickListener = url -> Toast.makeText(mContext,url,Toast.LENGTH_LONG).show();
-
         mPreferenceUtilModel = PreferencesUtils.getPreferenceModel(mContext);
 
         if(mPreferenceUtilModel!=null && mPreferenceUtilModel.isSaved()
@@ -86,7 +83,7 @@ public class ThreeRowFragment extends Fragment implements View.OnClickListener{
             mWallpapersList.setWallpapers(mWallpaper);
         }
 
-        adapter = new ListViewAdapter(mWallpapersList,ListViewAdapter.ADAPTER_STATE_2,mContext,mWallpaperListClickListener);
+        adapter = new WallpaperListViewAdapter(mWallpapersList, WallpaperListViewAdapter.ADAPTER_STATE_2,mContext,this);
         recyclerView = view.findViewById(R.id.simple_recyclerview);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(mContext,3);
@@ -131,8 +128,7 @@ public class ThreeRowFragment extends Fragment implements View.OnClickListener{
     }
 
     @Override
-    public void onDetach(){
-        super.onDetach();
-        mWallpaperListClickListener = null;
+    public void onItemClick(String url) {
+        Toast.makeText(mContext,url,Toast.LENGTH_LONG).show();
     }
 }

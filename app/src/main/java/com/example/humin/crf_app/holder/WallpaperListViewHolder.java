@@ -10,12 +10,12 @@ import android.widget.LinearLayout;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.humin.crf_app.R;
-import com.example.humin.crf_app.adapter.ListViewAdapter;
+import com.example.humin.crf_app.adapter.WallpaperListViewAdapter;
 import com.example.humin.crf_app.listener.WallpaperListClickListener;
 import com.example.humin.crf_app.model.Wallpaper;
 
 
-public class ListViewHolder extends RecyclerView.ViewHolder {
+public class WallpaperListViewHolder extends RecyclerView.ViewHolder {
 
     private LinearLayout mBoderLayout;
     private ImageView mWallpaperImage;
@@ -28,7 +28,7 @@ public class ListViewHolder extends RecyclerView.ViewHolder {
      * @param itemView
      *         The layout view group used to display the data
      */
-    public ListViewHolder(final View itemView) {
+    public WallpaperListViewHolder(final View itemView) {
         super(itemView);
         mBoderLayout = itemView.findViewById(R.id.layout_border);
         mWallpaperImage = itemView.findViewById(R.id.wallpaper_img);
@@ -45,7 +45,7 @@ public class ListViewHolder extends RecyclerView.ViewHolder {
         RequestOptions options;
         LinearLayout.LayoutParams params;
         switch (type){
-            case ListViewAdapter.ADAPTER_STATE_1:
+            case WallpaperListViewAdapter.ADAPTER_STATE_1:
                 mBoderLayout.setBackgroundResource(R.drawable.yellow_border);
 
                 params = (LinearLayout.LayoutParams) mBoderLayout.getLayoutParams();
@@ -66,7 +66,7 @@ public class ListViewHolder extends RecyclerView.ViewHolder {
 
                 break;
 
-            case ListViewAdapter.ADAPTER_STATE_2:
+            case WallpaperListViewAdapter.ADAPTER_STATE_2:
                 mBoderLayout.setBackgroundResource(R.drawable.blue_border);
 
                 params = (LinearLayout.LayoutParams) mBoderLayout.getLayoutParams();

@@ -1,4 +1,4 @@
-package com.example.humin.crf_app.util;
+package com.example.humin.crf_app.util.shared_preference;
 
 import android.content.Context;
 import android.content.SharedPreferences;
