@@ -2,12 +2,16 @@ package com.example.humin.crf_app.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
 import com.example.humin.crf_app.R;
+import com.example.humin.crf_app.login.activity.LoginActivity;
+import com.example.humin.crf_app.question.acitivty.QuestionActivity;
+import com.example.humin.crf_app.wallpaper.activity.Wallpaper2RowActivity;
+import com.example.humin.crf_app.wallpaper.activity.Wallpaper3RowActivity;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
@@ -17,7 +21,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button mButtonActivity1, mButtonActivity2, mButtonActivity3, mButtonActivity4;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_acivity);
         mContext=getApplicationContext();
@@ -43,11 +47,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent i;
         switch (view.getId()){
             case R.id.button_1:
-                i = new Intent(mContext, WallpaperActivity2Row.class);
+                i = new Intent(mContext, Wallpaper2RowActivity.class);
                 startActivity(i);
                 break;
             case R.id.button_2:
-                i = new Intent(mContext, WallpaperActivity3Row.class);
+                i = new Intent(mContext, Wallpaper3RowActivity.class);
                 startActivity(i);
                 break;
             case R.id.button_3:

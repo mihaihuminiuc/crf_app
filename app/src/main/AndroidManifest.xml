@@ -29,19 +29,19 @@
 
 
         <activity
-            android:name=".activity.WallpaperActivity2Row"
+            android:name=".wallpaper.activity.Wallpaper2RowActivity"
             android:theme="@style/AppTheme" />
 
         <activity
-            android:name=".activity.WallpaperActivity3Row"
+            android:name=".wallpaper.activity.Wallpaper3RowActivity"
             android:theme="@style/AppTheme" />
 
         <activity
-            android:name=".activity.QuestionActivity"
+            android:name=".question.acitivty.QuestionActivity"
             android:theme="@style/AppTheme" />
 
         <activity
-            android:name=".activity.LoginActivity"
+            android:name=".login.activity.LoginActivity"
             android:theme="@style/AppTheme" />
 
     </application>

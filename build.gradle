@@ -42,6 +42,16 @@ ext {
     volley = '1.0.0'
     glideVersion = '4.3.0'
     constraint = '1.0.2'
-    SugarORM = "1.5"
-    EventBuss = "3.0.0"
+    sugarORM = "1.5"
+    eventBuss = "3.0.0"
+
+    //rx
+    rxJava = '2.1.9'
+    rxAndroid = '2.0.2'
+    retrofit = '2.4.0'
+    gsonConverter = '2.3.0'
+    rxAdapter = '2.3.0'
+
+    //dager
+    dagger = '2.5'
 }

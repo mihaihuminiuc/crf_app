@@ -17,7 +17,6 @@
     <string name="username_string">username</string>
     <string name="password_string">password</string>
     <string name="login_title">LOGIN</string>
-    <string name="successful_request">All good</string>
     <string name="error_request">Error: %1$s</string>
 
 </resources>
