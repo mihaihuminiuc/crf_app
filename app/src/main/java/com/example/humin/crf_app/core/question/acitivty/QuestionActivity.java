@@ -59,7 +59,7 @@ public class QuestionActivity extends AppCompatActivity implements QuestionView{
 
     @Override
     public void onBackPressed() {
-        questionPresenter.onStop();
+        questionPresenter.stop();
         this.finish();
     }
 
@@ -81,13 +81,15 @@ public class QuestionActivity extends AppCompatActivity implements QuestionView{
 
     @Override
     public void getQuestions(List<QuestionModel> questionModelList) {
-        mQuestionFragment = QuestionFragment.newInstance(questionModelList);
+        if(!isFinishing()){
+            mQuestionFragment = QuestionFragment.newInstance(questionModelList);
 
-        mFragmentTransaction = getFragmentManager().beginTransaction();
-        mFragmentTransaction.replace(R.id.frame_x, mQuestionFragment);
-        mFragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-        mFragmentTransaction.commit();
+            mFragmentTransaction = getFragmentManager().beginTransaction();
+            mFragmentTransaction.replace(R.id.frame_x, mQuestionFragment);
+            mFragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+            mFragmentTransaction.commit();
 
-        mProgressBar.setVisibility(View.GONE);
+            mProgressBar.setVisibility(View.GONE);
+        }
     }
 }

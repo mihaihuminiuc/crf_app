@@ -72,7 +72,7 @@ public class ThreeRowFragment extends Fragment implements View.OnClickListener, 
         if(mPreferenceUtilModel!=null && mPreferenceUtilModel.isSaved()
                 && (WallpaperDB.listAll(WallpaperDB.class) !=null || !WallpaperDB.listAll(WallpaperDB.class).isEmpty())){
 
-            Toast.makeText(mContext, "RESTORED", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext, R.string.db_restored, Toast.LENGTH_SHORT).show();
 
             mWallpaper = new ArrayList<>();
 
@@ -124,7 +124,7 @@ public class ThreeRowFragment extends Fragment implements View.OnClickListener, 
 
         PreferencesUtils.setPreferenceModel(mContext,mPreferenceUtilModel);
 
-        Toast.makeText(mContext, "SAVED", Toast.LENGTH_SHORT).show();
+        Toast.makeText(mContext, R.string.db_save, Toast.LENGTH_SHORT).show();
     }
 
     @Override

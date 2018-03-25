@@ -22,5 +22,7 @@
     <string name="password_error">Insert password</string>
     <string name="answer_text">ANSWER : %1$s</string>
     <string name="answer_error">Please answer to all the questions</string>
+    <string name="db_restored">RESTORED</string>
+    <string name="db_save">SAVED</string>
 
 </resources>

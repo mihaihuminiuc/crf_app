@@ -97,7 +97,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
 
     @Override
     public void onBackPressed() {
-        loginPresenter.onStop();
+        loginPresenter.stop();
         this.finish();
     }
 

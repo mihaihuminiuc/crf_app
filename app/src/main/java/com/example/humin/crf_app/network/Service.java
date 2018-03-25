@@ -11,7 +11,7 @@ import com.example.humin.crf_app.network.callback.WallpaperCallBack;
 import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 
@@ -19,20 +19,29 @@ import io.reactivex.schedulers.Schedulers;
  * Created by humin on 3/24/2018.
  */
 
-public class Service implements Disposable {
-    private final NetworkService networkService;
+public class Service {
 
-    public NetworkService getNetworkService() {
-        return networkService;
-    }
+    public final static int WALLPAPER_OBSERVER=1;
+    public final static int USER_OBSERVER=2;
+    public final static int QUESTION_OBSERVER=3;
+
+
+    private NetworkService networkService;
+
+    private CompositeDisposable compositeDisposable;
+
+    DisposableObserver<WallpaperList> wallpaperObserver;
+    DisposableObserver<ServerResponse> userCredentialsObserver;
+    DisposableObserver<List<QuestionModel>> questionModelObserver;
 
     public Service(NetworkService networkService) {
         this.networkService = networkService;
+        this.compositeDisposable = new CompositeDisposable();
     }
 
     public void getWallpapers(final WallpaperCallBack callBack){
 
-        DisposableObserver<WallpaperList> wallpaperObserver = new DisposableObserver<WallpaperList>() {
+        wallpaperObserver = new DisposableObserver<WallpaperList>() {
             @Override
             public void onNext(WallpaperList wallpaperList) {
                 callBack.getWallpaperListSuccess(wallpaperList);
@@ -53,11 +62,13 @@ public class Service implements Disposable {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(wallpaperObserver);
+
+        compositeDisposable.add(wallpaperObserver);
     }
 
     public void getQuestions(final QuestionCallBack callBack){
 
-        DisposableObserver<List<QuestionModel>> questionModelObserver = new DisposableObserver<List<QuestionModel>>() {
+        questionModelObserver = new DisposableObserver<List<QuestionModel>>() {
             @Override
             public void onNext(List<QuestionModel> questionModel) {
                 callBack.getQuestionSuccess(questionModel);
@@ -78,11 +89,13 @@ public class Service implements Disposable {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(questionModelObserver);
+
+        compositeDisposable.add(questionModelObserver);
     }
 
     public void submitUserCredentials(UserCredentials userCredentials, final UserCallBack callBack){
 
-        DisposableObserver<ServerResponse> userCredentialsObserver = new DisposableObserver<ServerResponse>() {
+        userCredentialsObserver = new DisposableObserver<ServerResponse>() {
             @Override
             public void onNext(ServerResponse serverResponse) {
                 callBack.submitCredentialsSuccess(serverResponse);
@@ -103,14 +116,25 @@ public class Service implements Disposable {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(userCredentialsObserver);
+
+        compositeDisposable.add(userCredentialsObserver);
     }
 
-    @Override
-    public void dispose() {
-    }
-
-    @Override
-    public boolean isDisposed() {
-        return false;
+    public void destroy(int observer){
+        if(this.compositeDisposable!=null && !this.compositeDisposable.isDisposed())
+                switch (observer){
+                    case WALLPAPER_OBSERVER:
+                        if(wallpaperObserver!=null)
+                            compositeDisposable.delete(wallpaperObserver);
+                        break;
+                    case USER_OBSERVER:
+                        if(userCredentialsObserver!=null)
+                            compositeDisposable.delete(userCredentialsObserver);
+                        break;
+                    case QUESTION_OBSERVER:
+                        if(questionModelObserver!=null)
+                            compositeDisposable.delete(questionModelObserver);
+                        break;
+                }
     }
 }

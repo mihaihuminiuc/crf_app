@@ -18,7 +18,7 @@ import dagger.Component;
 @Component(modules = NetworkModule.class)
 public interface NetworkComponent {
     void inject(Wallpaper2RowActivity wallpaper2RowActivity);
-    void inject(Wallpaper3RowActivity wallpaper2RowActivity);
+    void inject(Wallpaper3RowActivity wallpaper3RowActivity);
     void inject(QuestionActivity questionActivity);
     void inject(LoginActivity loginActivity);
 }

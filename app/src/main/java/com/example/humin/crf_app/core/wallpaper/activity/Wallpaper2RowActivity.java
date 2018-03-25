@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import com.example.humin.crf_app.CrfApp;
 import com.example.humin.crf_app.R;
-import com.example.humin.crf_app.activity.BaseActivity;
 import com.example.humin.crf_app.model.WallpaperList;
 import com.example.humin.crf_app.network.Service;
 import com.example.humin.crf_app.core.wallpaper.fragment.TwoRowFragment;
@@ -37,7 +36,7 @@ public class Wallpaper2RowActivity extends AppCompatActivity implements Wallpape
     private FragmentManager mFragmentManager;
     private FragmentTransaction mFragmentTransaction;
 
-    private Wallpaper2RowPresenter presenter;
+    private Wallpaper2RowPresenter wallpaper2RowPresenter;
 
     @Inject
     Service service;
@@ -53,8 +52,8 @@ public class Wallpaper2RowActivity extends AppCompatActivity implements Wallpape
 
         initUI();
 
-        presenter = new Wallpaper2RowPresenter(service, this);
-        presenter.getWallpaperList();}
+        wallpaper2RowPresenter = new Wallpaper2RowPresenter(service, this);
+        wallpaper2RowPresenter.getWallpaperList();}
 
     private void initUI(){
         mFrameX = findViewById(R.id.frame_x);
@@ -63,7 +62,7 @@ public class Wallpaper2RowActivity extends AppCompatActivity implements Wallpape
 
     @Override
     public void onBackPressed() {
-        presenter.onStop();
+        wallpaper2RowPresenter.stop();
         this.finish();
     }
 
@@ -85,12 +84,14 @@ public class Wallpaper2RowActivity extends AppCompatActivity implements Wallpape
 
     @Override
     public void getWallpapers(WallpaperList wallpaperList) {
-        twoRowFragment = TwoRowFragment.newInstance(wallpaperList);
+        if(!isFinishing()){
+            twoRowFragment = TwoRowFragment.newInstance(wallpaperList);
 
-        mFragmentManager = getFragmentManager();
-        mFragmentTransaction = mFragmentManager.beginTransaction();
-        mFragmentTransaction.replace(R.id.frame_x, twoRowFragment);
-        mFragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-        mFragmentTransaction.commit();
+            mFragmentManager = getFragmentManager();
+            mFragmentTransaction = mFragmentManager.beginTransaction();
+            mFragmentTransaction.replace(R.id.frame_x, twoRowFragment);
+            mFragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+            mFragmentTransaction.commit();
+        }
     }
 }

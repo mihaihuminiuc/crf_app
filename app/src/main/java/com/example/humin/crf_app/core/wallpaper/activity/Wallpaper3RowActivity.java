@@ -35,7 +35,7 @@ public class Wallpaper3RowActivity extends AppCompatActivity implements Wallpape
     private FragmentManager mFragmentManager;
     private FragmentTransaction mFragmentTransaction;
 
-    private Wallpaper3RowPresenter presenter;
+    private Wallpaper3RowPresenter wallpaper3RowPresenter;
 
     @Inject
     Service service;
@@ -51,8 +51,8 @@ public class Wallpaper3RowActivity extends AppCompatActivity implements Wallpape
 
         initUI();
 
-        presenter = new Wallpaper3RowPresenter(service, this);
-        presenter.getWallpaperList();
+        wallpaper3RowPresenter = new Wallpaper3RowPresenter(service, this);
+        wallpaper3RowPresenter.getWallpaperList();
     }
 
     private void initUI(){
@@ -62,7 +62,7 @@ public class Wallpaper3RowActivity extends AppCompatActivity implements Wallpape
 
     @Override
     public void onBackPressed() {
-        presenter.onStop();
+        wallpaper3RowPresenter.stop();
         this.finish();
     }
 
@@ -84,12 +84,14 @@ public class Wallpaper3RowActivity extends AppCompatActivity implements Wallpape
 
     @Override
     public void getWallpapers(WallpaperList wallpaperList) {
-        mThreeRowFragment = ThreeRowFragment.newInstance(wallpaperList);
+        if(!isFinishing()){
+            mThreeRowFragment = ThreeRowFragment.newInstance(wallpaperList);
 
-        mFragmentManager = getFragmentManager();
-        mFragmentTransaction = mFragmentManager.beginTransaction();
-        mFragmentTransaction.replace(R.id.frame_x, mThreeRowFragment);
-        mFragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-        mFragmentTransaction.commit();
+            mFragmentManager = getFragmentManager();
+            mFragmentTransaction = mFragmentManager.beginTransaction();
+            mFragmentTransaction.replace(R.id.frame_x, mThreeRowFragment);
+            mFragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+            mFragmentTransaction.commit();
+        }
     }
 }
