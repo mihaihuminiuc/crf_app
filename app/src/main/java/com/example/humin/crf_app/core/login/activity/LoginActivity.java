@@ -4,13 +4,14 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.humin.crf_app.CrfApp;
 import com.example.humin.crf_app.R;
-import com.example.humin.crf_app.activity.BaseActivity;
 import com.example.humin.crf_app.appevents.AppEvents;
 import com.example.humin.crf_app.core.login.fragment.LoginFragment;
 import com.example.humin.crf_app.core.login.presenter.LoginPresenter;
@@ -28,7 +29,7 @@ import javax.inject.Inject;
  * Created by humin on 3/24/2018.
  */
 
-public class LoginActivity extends BaseActivity implements LoginView{
+public class LoginActivity extends AppCompatActivity implements LoginView{
 
     private ProgressBar mProgressBar;
     private FrameLayout mFrameX;
@@ -53,10 +54,10 @@ public class LoginActivity extends BaseActivity implements LoginView{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        getNetworkInject().inject(this);
-
         setContentView(R.layout.login_activity);
         mContext=getApplicationContext();
+
+        ((CrfApp)mContext).getNetworkInject().inject(this);
 
         initUI();
 

@@ -19,7 +19,7 @@
         <meta-data android:name="QUERY_LOG" android:value="true" />
         <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="com.example.humin.crf_app.database" />
 
-        <activity android:name=".activity.MainActivity">
+        <activity android:name=".core.main.acitivty.MainMenuActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -3,12 +3,13 @@ package com.example.humin.crf_app.core.question.acitivty;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.humin.crf_app.CrfApp;
 import com.example.humin.crf_app.R;
-import com.example.humin.crf_app.activity.BaseActivity;
 import com.example.humin.crf_app.core.question.fragment.QuestionFragment;
 import com.example.humin.crf_app.core.question.presenter.QuestionPresenter;
 import com.example.humin.crf_app.core.question.view.QuestionView;
@@ -23,7 +24,7 @@ import javax.inject.Inject;
  * Created by humin on 3/23/2018.
  */
 
-public class QuestionActivity extends BaseActivity implements QuestionView{
+public class QuestionActivity extends AppCompatActivity implements QuestionView{
 
     private ProgressBar mProgressBar;
 
@@ -41,10 +42,10 @@ public class QuestionActivity extends BaseActivity implements QuestionView{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        getNetworkInject().inject(this);
-
         setContentView(R.layout.questions_activity);
         mContext=getApplicationContext();
+
+        ((CrfApp)mContext).getNetworkInject().inject(this);
 
         initUI();
 

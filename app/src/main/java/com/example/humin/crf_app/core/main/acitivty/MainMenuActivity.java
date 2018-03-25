@@ -1,4 +1,4 @@
-package com.example.humin.crf_app.activity;
+package com.example.humin.crf_app.core.main.acitivty;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,7 +14,7 @@ import com.example.humin.crf_app.core.wallpaper.activity.Wallpaper2RowActivity;
 import com.example.humin.crf_app.core.wallpaper.activity.Wallpaper3RowActivity;
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainMenuActivity extends AppCompatActivity implements View.OnClickListener{
 
     private Context mContext;
 

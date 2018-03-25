@@ -4,18 +4,19 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.humin.crf_app.CrfApp;
 import com.example.humin.crf_app.R;
-import com.example.humin.crf_app.activity.BaseActivity;
-import com.example.humin.crf_app.model.WallpaperList;
-import com.example.humin.crf_app.network.Service;
 import com.example.humin.crf_app.core.wallpaper.fragment.ThreeRowFragment;
 import com.example.humin.crf_app.core.wallpaper.presenter.Wallpaper3RowPresenter;
 import com.example.humin.crf_app.core.wallpaper.view.Wallpaper3RowView;
+import com.example.humin.crf_app.model.WallpaperList;
+import com.example.humin.crf_app.network.Service;
 
 import javax.inject.Inject;
 
@@ -23,7 +24,7 @@ import javax.inject.Inject;
  * Created by humin on 3/23/2018.
  */
 
-public class Wallpaper3RowActivity extends BaseActivity implements Wallpaper3RowView{
+public class Wallpaper3RowActivity extends AppCompatActivity implements Wallpaper3RowView{
 
     private Context mContext;
     private ProgressBar mProgressBar;
@@ -43,10 +44,10 @@ public class Wallpaper3RowActivity extends BaseActivity implements Wallpaper3Row
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        getNetworkInject().inject(this);
-
         setContentView(R.layout.row_wallpaper_3_activity);
         mContext=getApplicationContext();
+
+        ((CrfApp)mContext).getNetworkInject().inject(this);
 
         initUI();
 

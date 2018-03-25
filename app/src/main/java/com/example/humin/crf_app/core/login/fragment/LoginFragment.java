@@ -56,17 +56,20 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
         switch (view.getId()){
             case R.id.send_button:
 
-                if(usernameEdiText.getText().toString().isEmpty())
+                if(usernameEdiText.getText().toString().isEmpty()){
                     Toast.makeText(mContext,getString(R.string.user_error),Toast.LENGTH_LONG).show();
-                else if (passwordEdiText.getText().toString().isEmpty())
-                    Toast.makeText(mContext,getString(R.string.password_error),Toast.LENGTH_LONG).show();
-                else {
-                    UserCredentials userCredentials = new UserCredentials();
-                    userCredentials.setUsername(usernameEdiText.getText().toString());
-                    userCredentials.setPassword(passwordEdiText.getText().toString());
-
-                    GlobalBus.getBus().post(new AppEvents.Login(userCredentials));
+                    return;
                 }
+                if (passwordEdiText.getText().toString().isEmpty()){
+                    Toast.makeText(mContext,getString(R.string.password_error),Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                UserCredentials userCredentials = new UserCredentials();
+                userCredentials.setUsername(usernameEdiText.getText().toString());
+                userCredentials.setPassword(passwordEdiText.getText().toString());
+
+                GlobalBus.getBus().post(new AppEvents.Login(userCredentials));
 
                 break;
         }

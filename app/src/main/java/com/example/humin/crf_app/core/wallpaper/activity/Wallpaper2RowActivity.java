@@ -4,11 +4,13 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.humin.crf_app.CrfApp;
 import com.example.humin.crf_app.R;
 import com.example.humin.crf_app.activity.BaseActivity;
 import com.example.humin.crf_app.model.WallpaperList;
@@ -23,7 +25,7 @@ import javax.inject.Inject;
  * Created by humin on 3/23/2018.
  */
 
-public class Wallpaper2RowActivity extends BaseActivity implements Wallpaper2RowView{
+public class Wallpaper2RowActivity extends AppCompatActivity implements Wallpaper2RowView{
 
     private ProgressBar mProgressBar;
     private FrameLayout mFrameX;
@@ -44,10 +46,10 @@ public class Wallpaper2RowActivity extends BaseActivity implements Wallpaper2Row
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        getNetworkInject().inject(this);
-
         setContentView(R.layout.row_wallpaper_2_activity);
         mContext=getApplicationContext();
+
+        ((CrfApp)mContext).getNetworkInject().inject(this);
 
         initUI();
 
