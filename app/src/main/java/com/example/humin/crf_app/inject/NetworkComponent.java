@@ -1,10 +1,10 @@
 package com.example.humin.crf_app.inject;
 
-import com.example.humin.crf_app.login.activity.LoginActivity;
-import com.example.humin.crf_app.question.acitivty.QuestionActivity;
+import com.example.humin.crf_app.core.login.activity.LoginActivity;
+import com.example.humin.crf_app.core.question.acitivty.QuestionActivity;
 import com.example.humin.crf_app.network.NetworkModule;
-import com.example.humin.crf_app.wallpaper.activity.Wallpaper2RowActivity;
-import com.example.humin.crf_app.wallpaper.activity.Wallpaper3RowActivity;
+import com.example.humin.crf_app.core.wallpaper.activity.Wallpaper2RowActivity;
+import com.example.humin.crf_app.core.wallpaper.activity.Wallpaper3RowActivity;
 
 import javax.inject.Singleton;
 

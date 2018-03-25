@@ -8,6 +8,6 @@ import com.example.humin.crf_app.model.WallpaperList;
 
 public interface WallpaperCallBack {
 
-    void getWallpaperListSucces(WallpaperList wallpaperList);
+    void getWallpaperListSuccess(WallpaperList wallpaperList);
     void getWallpaperListError(Throwable error);
 }

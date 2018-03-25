@@ -18,5 +18,9 @@
     <string name="password_string">password</string>
     <string name="login_title">LOGIN</string>
     <string name="error_request">Error: %1$s</string>
+    <string name="user_error">Insert username</string>
+    <string name="password_error">Insert password</string>
+    <string name="answer_text">ANSWER : %1$s</string>
+    <string name="answer_error">Please answer to all the questions</string>
 
 </resources>

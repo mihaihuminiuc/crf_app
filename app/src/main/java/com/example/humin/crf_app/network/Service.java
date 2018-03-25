@@ -22,6 +22,10 @@ import io.reactivex.schedulers.Schedulers;
 public class Service implements Disposable {
     private final NetworkService networkService;
 
+    public NetworkService getNetworkService() {
+        return networkService;
+    }
+
     public Service(NetworkService networkService) {
         this.networkService = networkService;
     }
@@ -31,7 +35,7 @@ public class Service implements Disposable {
         DisposableObserver<WallpaperList> wallpaperObserver = new DisposableObserver<WallpaperList>() {
             @Override
             public void onNext(WallpaperList wallpaperList) {
-                callBack.getWallpaperListSucces(wallpaperList);
+                callBack.getWallpaperListSuccess(wallpaperList);
             }
 
             @Override
@@ -56,7 +60,7 @@ public class Service implements Disposable {
         DisposableObserver<List<QuestionModel>> questionModelObserver = new DisposableObserver<List<QuestionModel>>() {
             @Override
             public void onNext(List<QuestionModel> questionModel) {
-                callBack.getQuestionSucces(questionModel);
+                callBack.getQuestionSuccess(questionModel);
             }
 
             @Override
@@ -103,7 +107,6 @@ public class Service implements Disposable {
 
     @Override
     public void dispose() {
-
     }
 
     @Override

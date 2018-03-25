@@ -10,6 +10,6 @@ import java.util.List;
 
 public interface QuestionCallBack {
 
-    void getQuestionSucces(List<QuestionModel> questionModelList);
+    void getQuestionSuccess(List<QuestionModel> questionModelList);
     void getQuestionError(Throwable error);
 }
