@@ -10,7 +10,7 @@ import com.example.humin.crf_app.holder.ButtonViewHolder;
 import com.example.humin.crf_app.holder.QuestionFreeTextViewHolder;
 import com.example.humin.crf_app.holder.QuestionRatingViewHolder;
 import com.example.humin.crf_app.holder.QuestionTextViewHolder;
-import com.example.humin.crf_app.list_items.QuestionItem;
+import com.example.humin.crf_app.listitem.QuestionItem;
 import com.example.humin.crf_app.listener.QuestionAnswersClickListener;
 import com.example.humin.crf_app.model.QuestionModel;
 import java.util.List;

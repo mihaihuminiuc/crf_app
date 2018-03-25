@@ -50,7 +50,7 @@ public class WallpaperListViewAdapter extends RecyclerView.Adapter{
 
     @Override
     public int getItemCount() {
-        return wallpapers.getWallpapers().size();
+        return wallpapers == null? 0 : wallpapers.getWallpapers().size();
     }
 
     @Override

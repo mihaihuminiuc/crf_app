@@ -18,6 +18,12 @@
     <string name="password_string">password</string>
     <string name="login_title">LOGIN</string>
     <string name="successful_request">All good</string>
-    <string name="error_request">Error: %1$s</string>
+    <string name="error_text">Error: %1$s </string>
+    <string name="user_error">Insert username</string>
+    <string name="password_error">Insert password</string>
+    <string name="answer_text">ANSWER : %1$s</string>
+    <string name="answer_error">Please answer to all the questions</string>
+    <string name="db_restored">RESTORED</string>
+    <string name="db_saved">SAVED</string>
 
 </resources>

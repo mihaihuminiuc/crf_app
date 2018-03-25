@@ -73,7 +73,7 @@ public class QuestionActivity extends AppCompatActivity {
 
         }, error -> {
             mProgressBar.setVisibility(View.GONE);
-            Toast.makeText(mContext,"Error:"+error.toString(),Toast.LENGTH_LONG).show();
+            Toast.makeText(mContext,getString(R.string.error_text,error.toString()),Toast.LENGTH_LONG).show();
         });
     }
 

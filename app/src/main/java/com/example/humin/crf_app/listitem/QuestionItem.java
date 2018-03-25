@@ -1,4 +1,4 @@
-package com.example.humin.crf_app.list_items;
+package com.example.humin.crf_app.listitem;
 
 
 /**

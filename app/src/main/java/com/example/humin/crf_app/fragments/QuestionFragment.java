@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.example.humin.crf_app.R;
 import com.example.humin.crf_app.adapter.QuestionListAdapter;
-import com.example.humin.crf_app.list_items.QuestionItem;
+import com.example.humin.crf_app.listitem.QuestionItem;
 import com.example.humin.crf_app.listener.QuestionAnswersClickListener;
 import com.example.humin.crf_app.model.QuestionModel;
 
@@ -81,9 +81,13 @@ public class QuestionFragment extends Fragment implements QuestionAnswersClickLi
 
     @Override
     public void onSendAnswers() {
-        for(int i=0;i<mQuestionList.size();i++){
-            for(int j=0;j<mQuestionList.get(i).getUserResponses().getAnswer().size();j++){
-                Toast.makeText(mContext,"ANSWER "+i+" :"+mQuestionList.get(i).getUserResponses().getAnswer().get(j),Toast.LENGTH_SHORT).show();
+        for (QuestionModel q:mQuestionList) {
+            if(q.getUserResponses()==null){
+                Toast.makeText(mContext,getString(R.string.answer_error),Toast.LENGTH_SHORT).show();
+                return;
+            }
+            for(String answer:q.getUserResponses().getAnswer()){
+                Toast.makeText(mContext,getString(R.string.answer_text, answer),Toast.LENGTH_SHORT).show();
             }
         }
     }

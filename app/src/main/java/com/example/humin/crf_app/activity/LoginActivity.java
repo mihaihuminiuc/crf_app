@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.example.humin.crf_app.R;
 import com.example.humin.crf_app.api.ApiUtils;
-import com.example.humin.crf_app.app_events.AppEvents;
+import com.example.humin.crf_app.appevents.AppEvents;
 import com.example.humin.crf_app.fragments.LoginFragment;
 import com.example.humin.crf_app.util.GlobalBus;
 
@@ -76,7 +76,7 @@ public class LoginActivity extends AppCompatActivity{
             Toast.makeText(mContext, R.string.successful_request,Toast.LENGTH_LONG).show();
         }, error -> {
             mProgressBar.setVisibility(View.GONE);
-            Toast.makeText(mContext,getString(R.string.error_request,error.toString()),Toast.LENGTH_LONG).show();
+            Toast.makeText(mContext,getString(R.string.error_text,error.toString()),Toast.LENGTH_LONG).show();
         });
 
     }

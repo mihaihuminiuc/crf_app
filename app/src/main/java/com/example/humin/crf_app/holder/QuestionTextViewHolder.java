@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.humin.crf_app.R;
-import com.example.humin.crf_app.list_items.QuestionItem;
+import com.example.humin.crf_app.listitem.QuestionItem;
 import com.example.humin.crf_app.model.AnswersModel;
 import com.example.humin.crf_app.model.QuestionModel;
 import com.example.humin.crf_app.model.UserResponseModel;

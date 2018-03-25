@@ -1,7 +1,5 @@
-package com.example.humin.crf_app.app_events;
+package com.example.humin.crf_app.appevents;
 
-import com.example.humin.crf_app.api.ApiUtils;
-import com.example.humin.crf_app.model.QuestionModel;
 import com.example.humin.crf_app.model.UserCredentials;
 
 /**

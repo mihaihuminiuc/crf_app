@@ -9,9 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.humin.crf_app.R;
-import com.example.humin.crf_app.app_events.AppEvents;
+import com.example.humin.crf_app.appevents.AppEvents;
 import com.example.humin.crf_app.model.UserCredentials;
 import com.example.humin.crf_app.util.GlobalBus;
 
@@ -55,6 +56,16 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.send_button:
+
+                if(usernameEdiText.getText().toString().isEmpty()){
+                    Toast.makeText(mContext,R.string.user_error,Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                if(passwordEdiText.getText().toString().isEmpty()){
+                    Toast.makeText(mContext,R.string.password_error,Toast.LENGTH_LONG).show();
+                    return;
+                }
 
                 UserCredentials userCredentials = new UserCredentials();
                 userCredentials.setUsername(usernameEdiText.getText().toString());

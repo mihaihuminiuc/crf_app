@@ -52,7 +52,7 @@ public class WallpaperActivity3Row extends AppCompatActivity{
                     mFragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
                     mFragmentTransaction.commit();
                 },
-                error -> Toast.makeText(mContext,"Error:"+error.toString(),Toast.LENGTH_LONG).show()
+                error -> Toast.makeText(mContext,getString(R.string.error_text,error.toString()),Toast.LENGTH_LONG).show()
         );
     }
 

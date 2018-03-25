@@ -19,7 +19,7 @@ import com.example.humin.crf_app.listener.WallpaperListClickListener;
 import com.example.humin.crf_app.model.Wallpaper;
 import com.example.humin.crf_app.model.WallpaperList;
 import com.example.humin.crf_app.model.PreferenceUtilModel;
-import com.example.humin.crf_app.util.shared_preference.PreferencesUtils;
+import com.example.humin.crf_app.util.sharedpreference.PreferencesUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,7 +72,7 @@ public class ThreeRowFragment extends Fragment implements View.OnClickListener, 
         if(mPreferenceUtilModel!=null && mPreferenceUtilModel.isSaved()
                 && (WallpaperDB.listAll(WallpaperDB.class) !=null || !WallpaperDB.listAll(WallpaperDB.class).isEmpty())){
 
-            Toast.makeText(mContext, "RESTORED", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext, R.string.db_restored, Toast.LENGTH_SHORT).show();
 
             mWallpaper = new ArrayList<>();
 
@@ -124,7 +124,7 @@ public class ThreeRowFragment extends Fragment implements View.OnClickListener, 
 
         PreferencesUtils.setPreferenceModel(mContext,mPreferenceUtilModel);
 
-        Toast.makeText(mContext, "SAVED", Toast.LENGTH_SHORT).show();
+        Toast.makeText(mContext, R.string.db_saved, Toast.LENGTH_SHORT).show();
     }
 
     @Override
