@@ -54,4 +54,7 @@ ext {
 
     //dager
     dagger = '2.5'
+
+    //butterknife
+    butterknife = '8.8.1'
 }

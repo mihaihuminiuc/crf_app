@@ -20,13 +20,14 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by humin on 3/23/2018.
  */
 
 public class QuestionActivity extends AppCompatActivity implements QuestionView{
-
-    private ProgressBar mProgressBar;
 
     private QuestionFragment mQuestionFragment;
     private FragmentTransaction mFragmentTransaction;
@@ -38,6 +39,8 @@ public class QuestionActivity extends AppCompatActivity implements QuestionView{
     @Inject
     Service service;
 
+    @BindView(R.id.progressBar) ProgressBar mProgressBar;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,16 +48,12 @@ public class QuestionActivity extends AppCompatActivity implements QuestionView{
         setContentView(R.layout.questions_activity);
         mContext=getApplicationContext();
 
-        ((CrfApp)mContext).getNetworkInject().inject(this);
+        ButterKnife.bind(this, this);
 
-        initUI();
+        ((CrfApp)mContext).getNetworkInject().inject(this);
 
         questionPresenter = new QuestionPresenter(service,this);
         questionPresenter.getQuestionList();
-    }
-
-    private void initUI(){
-        mProgressBar = findViewById(R.id.progressBar);
     }
 
     @Override

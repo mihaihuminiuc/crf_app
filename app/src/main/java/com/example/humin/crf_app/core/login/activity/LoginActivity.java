@@ -6,7 +6,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -24,6 +23,9 @@ import org.greenrobot.eventbus.Subscribe;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 
 /**
  * Created by humin on 3/24/2018.
@@ -31,8 +33,7 @@ import javax.inject.Inject;
 
 public class LoginActivity extends AppCompatActivity implements LoginView{
 
-    private ProgressBar mProgressBar;
-    private FrameLayout mFrameX;
+
     private FragmentManager mFragmentManager;
     private FragmentTransaction mFragmentTransaction;
 
@@ -43,6 +44,8 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
 
     @Inject
     Service service;
+
+    @BindView(R.id.progressBar) ProgressBar mProgressBar;
 
     @Override
     protected void onStart() {
@@ -57,6 +60,8 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
         setContentView(R.layout.login_activity);
         mContext=getApplicationContext();
 
+        ButterKnife.bind(this, this);
+
         ((CrfApp)mContext).getNetworkInject().inject(this);
 
         initUI();
@@ -65,13 +70,6 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
     }
 
     private void initUI(){
-        mFrameX = findViewById(R.id.frame_x);
-        mProgressBar = findViewById(R.id.progressBar);
-
-        initFragment();
-    }
-
-    private void initFragment(){
         loginFragment = LoginFragment.newInstance();
 
         mFragmentManager = getFragmentManager();
@@ -82,7 +80,6 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
 
         mProgressBar.setVisibility(View.GONE);
     }
-
 
     @Subscribe
     public void login(AppEvents.Login login) {

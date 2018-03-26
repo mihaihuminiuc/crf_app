@@ -20,13 +20,18 @@ import com.example.humin.crf_app.model.QuestionModel;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by humin on 3/23/2018.
  */
 
 public class QuestionFragment extends Fragment implements QuestionAnswersClickListener{
 
-    private RecyclerView recyclerView;
+
+    @BindView(R.id.simple_recyclerview) RecyclerView recyclerView;
+
     private QuestionListAdapter adapter;
     private List<QuestionModel> mQuestionList;
 
@@ -47,11 +52,15 @@ public class QuestionFragment extends Fragment implements QuestionAnswersClickLi
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         mContext = getActivity();
-        setupList(view);
+
+        ButterKnife.bind(this, view);
+
+        setupList();
     }
 
-    private void setupList(View view){
+    private void setupList(){
 
         ArrayList<QuestionItem>  questionModelList = new ArrayList<>(mQuestionList.size());
 
@@ -72,8 +81,6 @@ public class QuestionFragment extends Fragment implements QuestionAnswersClickLi
         questionModelList.add(new QuestionItem(QuestionModel.ANSWER_BUTTON_SEND,mQuestionList.size()));
 
         adapter = new QuestionListAdapter(questionModelList,mContext,this);
-        recyclerView = view.findViewById(R.id.simple_recyclerview);
-        recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(mContext,1);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);

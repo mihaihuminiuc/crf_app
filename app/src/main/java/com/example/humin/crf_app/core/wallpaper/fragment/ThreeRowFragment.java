@@ -16,26 +16,31 @@ import com.example.humin.crf_app.R;
 import com.example.humin.crf_app.core.wallpaper.listadapter.WallpaperListViewAdapter;
 import com.example.humin.crf_app.database.WallpaperDB;
 import com.example.humin.crf_app.listener.WallpaperListClickListener;
+import com.example.humin.crf_app.model.PreferenceUtilModel;
 import com.example.humin.crf_app.model.Wallpaper;
 import com.example.humin.crf_app.model.WallpaperList;
-import com.example.humin.crf_app.model.PreferenceUtilModel;
 import com.example.humin.crf_app.util.sharedpreference.PreferencesUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 /**
  * Created by humin on 3/23/2018.
  */
 
-public class ThreeRowFragment extends Fragment implements View.OnClickListener, WallpaperListClickListener{
+public class ThreeRowFragment extends Fragment implements WallpaperListClickListener{
 
-    private RecyclerView recyclerView;
+    @BindView(R.id.simple_recyclerview) RecyclerView recyclerView;
+    @BindView(R.id.fab) FloatingActionButton mFloatingActionButton;
+
     private WallpaperList mWallpapersList;
     private List<Wallpaper> mWallpaper;
     private WallpaperListViewAdapter adapter;
-    private FloatingActionButton mFloatingActionButton;
     private Context mContext;
     private PreferenceUtilModel mPreferenceUtilModel;
 
@@ -55,18 +60,13 @@ public class ThreeRowFragment extends Fragment implements View.OnClickListener, 
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        ButterKnife.bind(this, view);
+
         mContext = getActivity();
-        initUI(view);
-        setupList(view);
+        setupList();
     }
 
-    private void initUI(View view){
-        mFloatingActionButton = view.findViewById(R.id.fab);
-
-        mFloatingActionButton.setOnClickListener(this);
-    }
-
-    private void setupList(View view){
+    private void setupList(){
         mPreferenceUtilModel = PreferencesUtils.getPreferenceModel(mContext);
 
         if(mPreferenceUtilModel!=null && mPreferenceUtilModel.isSaved()
@@ -84,27 +84,21 @@ public class ThreeRowFragment extends Fragment implements View.OnClickListener, 
         }
 
         adapter = new WallpaperListViewAdapter(mWallpapersList, WallpaperListViewAdapter.ADAPTER_STATE_2,mContext,this);
-        recyclerView = view.findViewById(R.id.simple_recyclerview);
-        recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(mContext,3);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
     }
 
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.fab:
-                int random = new Random().nextInt(mWallpapersList.getWallpapers().size()) ;
-                Wallpaper tempWallpaper = mWallpapersList.getWallpapers().get(random);
+    @OnClick(R.id.fab)
+    void setmFloatingActionButton(){
+        int random = new Random().nextInt(mWallpapersList.getWallpapers().size()) ;
+        Wallpaper tempWallpaper = mWallpapersList.getWallpapers().get(random);
 
-                mWallpapersList.getWallpapers().set(0,tempWallpaper);
+        mWallpapersList.getWallpapers().set(0,tempWallpaper);
 
-                adapter.updateList(mWallpapersList);
+        adapter.updateList(mWallpapersList);
 
-                recyclerView.smoothScrollToPosition(0);
-                break;
-        }
+        recyclerView.smoothScrollToPosition(0);
     }
 
     @Override

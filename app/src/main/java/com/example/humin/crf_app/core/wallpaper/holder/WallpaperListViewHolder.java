@@ -14,11 +14,14 @@ import com.example.humin.crf_app.core.wallpaper.listadapter.WallpaperListViewAda
 import com.example.humin.crf_app.listener.WallpaperListClickListener;
 import com.example.humin.crf_app.model.Wallpaper;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 
 public class WallpaperListViewHolder extends RecyclerView.ViewHolder {
 
-    private LinearLayout mBoderLayout;
-    private ImageView mWallpaperImage;
+    @BindView(R.id.layout_border) LinearLayout mBoderLayout;
+    @BindView(R.id.wallpaper_img) ImageView mWallpaperImage;
     private View view;
 
     /**
@@ -30,8 +33,7 @@ public class WallpaperListViewHolder extends RecyclerView.ViewHolder {
      */
     public WallpaperListViewHolder(final View itemView) {
         super(itemView);
-        mBoderLayout = itemView.findViewById(R.id.layout_border);
-        mWallpaperImage = itemView.findViewById(R.id.wallpaper_img);
+        ButterKnife.bind(this, itemView);
         view = itemView;
     }
 

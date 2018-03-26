@@ -6,19 +6,21 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.humin.crf_app.CrfApp;
 import com.example.humin.crf_app.R;
-import com.example.humin.crf_app.model.WallpaperList;
-import com.example.humin.crf_app.network.Service;
 import com.example.humin.crf_app.core.wallpaper.fragment.TwoRowFragment;
 import com.example.humin.crf_app.core.wallpaper.presenter.Wallpaper2RowPresenter;
 import com.example.humin.crf_app.core.wallpaper.view.Wallpaper2RowView;
+import com.example.humin.crf_app.model.WallpaperList;
+import com.example.humin.crf_app.network.Service;
 
 import javax.inject.Inject;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by humin on 3/23/2018.
@@ -26,8 +28,7 @@ import javax.inject.Inject;
 
 public class Wallpaper2RowActivity extends AppCompatActivity implements Wallpaper2RowView{
 
-    private ProgressBar mProgressBar;
-    private FrameLayout mFrameX;
+    @BindView(R.id.progressBar) ProgressBar mProgressBar;
 
     private Context mContext;
 
@@ -48,17 +49,12 @@ public class Wallpaper2RowActivity extends AppCompatActivity implements Wallpape
         setContentView(R.layout.row_wallpaper_2_activity);
         mContext=getApplicationContext();
 
-        ((CrfApp)mContext).getNetworkInject().inject(this);
+        ButterKnife.bind(this, this);
 
-        initUI();
+        ((CrfApp)mContext).getNetworkInject().inject(this);
 
         wallpaper2RowPresenter = new Wallpaper2RowPresenter(service, this);
         wallpaper2RowPresenter.getWallpaperList();}
-
-    private void initUI(){
-        mFrameX = findViewById(R.id.frame_x);
-        mProgressBar = findViewById(R.id.progressBar);
-    }
 
     @Override
     public void onBackPressed() {

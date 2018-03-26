@@ -6,7 +6,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -20,6 +19,9 @@ import com.example.humin.crf_app.network.Service;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by humin on 3/23/2018.
  */
@@ -27,8 +29,7 @@ import javax.inject.Inject;
 public class Wallpaper3RowActivity extends AppCompatActivity implements Wallpaper3RowView{
 
     private Context mContext;
-    private ProgressBar mProgressBar;
-    private FrameLayout mFrameX;
+    @BindView(R.id.progressBar) ProgressBar mProgressBar;
 
     private ThreeRowFragment mThreeRowFragment;
 
@@ -47,18 +48,14 @@ public class Wallpaper3RowActivity extends AppCompatActivity implements Wallpape
         setContentView(R.layout.row_wallpaper_3_activity);
         mContext=getApplicationContext();
 
-        ((CrfApp)mContext).getNetworkInject().inject(this);
+        ButterKnife.bind(this, this);
 
-        initUI();
+        ((CrfApp)mContext).getNetworkInject().inject(this);
 
         wallpaper3RowPresenter = new Wallpaper3RowPresenter(service, this);
         wallpaper3RowPresenter.getWallpaperList();
     }
 
-    private void initUI(){
-        mFrameX = findViewById(R.id.frame_x);
-        mProgressBar = findViewById(R.id.progressBar);
-    }
 
     @Override
     public void onBackPressed() {

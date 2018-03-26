@@ -20,17 +20,21 @@ import com.example.humin.crf_app.util.CommonUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by humin on 3/23/2018.
  */
 
 public class QuestionTextViewHolder  extends RecyclerView.ViewHolder {
 
-    private LinearLayout masterContainer;
-    private TextView questionText;
+    @BindView(R.id.master_container_row_quiz_text) LinearLayout masterContainer;
+    @BindView(R.id.txt_question) TextView questionText;
 
     public QuestionTextViewHolder(View itemView) {
         super(itemView);
+        ButterKnife.bind(this, itemView);
     }
 
     public void bindData(Context context, int position, final QuestionItem questionItem) {
@@ -45,9 +49,7 @@ public class QuestionTextViewHolder  extends RecyclerView.ViewHolder {
         LinearLayout.LayoutParams chkLp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         chkLp.setMargins(padding, padding, padding, padding);
 
-        questionText = itemView.findViewById(R.id.txt_question);
         questionText.setTextColor(context.getResources().getColor(R.color.gray_light));
-        masterContainer = itemView.findViewById(R.id.master_container_row_quiz_text);
 
         for (int i = 0; i < ((QuestionModel)questionItem.element).getAnswers().size(); i++) {
             LinearLayout ll = new LinearLayout(context);

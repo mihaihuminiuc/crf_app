@@ -19,22 +19,25 @@ import com.example.humin.crf_app.util.CommonUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by humin on 3/23/2018.
  */
 
 public class QuestionRatingViewHolder extends RecyclerView.ViewHolder {
 
-    private TextView questionText;
-    private LinearLayout masterContainer;
+    @BindView(R.id.txt_question) TextView questionText;
+    @BindView(R.id.rating_layout) LinearLayout masterContainer;
+
     private List<FrameLayout> frameList;
     private List<TextView> textList;
     private List<ImageView> imageList;
 
     public QuestionRatingViewHolder(View itemView) {
         super(itemView);
-        masterContainer = itemView.findViewById(R.id.rating_layout);
-        questionText = itemView.findViewById(R.id.txt_question);
+        ButterKnife.bind(this, itemView);
     }
 
     public void bindData(Context context, int position, final QuestionItem questionItem) {

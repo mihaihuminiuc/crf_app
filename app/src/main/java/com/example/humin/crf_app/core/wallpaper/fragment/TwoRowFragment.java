@@ -17,13 +17,16 @@ import com.example.humin.crf_app.listener.WallpaperListClickListener;
 import com.example.humin.crf_app.model.WallpaperList;
 import com.example.humin.crf_app.core.wallpaper.listadapter.WallpaperListViewAdapter;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by humin on 3/23/2018.
  */
 
 public class TwoRowFragment extends Fragment implements WallpaperListClickListener {
 
-    private RecyclerView recyclerView;
+    @BindView(R.id.simple_recyclerview) RecyclerView recyclerView;
     private WallpaperList mWallpapersList;
 
     private Context mContext;
@@ -43,14 +46,15 @@ public class TwoRowFragment extends Fragment implements WallpaperListClickListen
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        ButterKnife.bind(this, view);
+
         mContext = getActivity();
-        setupList(view);
+        setupList();
     }
 
-    private void setupList(View view) {
+    private void setupList() {
         WallpaperListViewAdapter adapter = new WallpaperListViewAdapter(mWallpapersList, WallpaperListViewAdapter.ADAPTER_STATE_1, mContext, this);
-        recyclerView = view.findViewById(R.id.simple_recyclerview);
-        recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(mContext, 2);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);

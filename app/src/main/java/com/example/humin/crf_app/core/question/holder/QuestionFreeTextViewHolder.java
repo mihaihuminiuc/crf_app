@@ -17,20 +17,21 @@ import com.example.humin.crf_app.util.CommonUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by humin on 3/23/2018.
  */
 
 public class QuestionFreeTextViewHolder extends RecyclerView.ViewHolder {
 
-    private TextView questionText;
-    private EditText answerText;
+    @BindView(R.id.txt_question) TextView questionText;
+    @BindView(R.id.edt_answer) EditText answerText;
 
     public QuestionFreeTextViewHolder(View itemView) {
         super(itemView);
-
-        questionText = itemView.findViewById(R.id.txt_question);
-        answerText =  itemView.findViewById(R.id.edt_answer);
+        ButterKnife.bind(this, itemView);
     }
 
     public void bindData(Context context, int position, final QuestionItem questionItem) {
