@@ -10,8 +10,10 @@ import com.example.humin.crf_app.network.callback.WallpaperCallBack;
 
 import java.util.List;
 
+import dagger.internal.Preconditions;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 
@@ -25,14 +27,13 @@ public class Service {
     public final static int USER_OBSERVER=2;
     public final static int QUESTION_OBSERVER=3;
 
-
     private NetworkService networkService;
 
     private CompositeDisposable compositeDisposable;
 
-    DisposableObserver<WallpaperList> wallpaperObserver;
-    DisposableObserver<ServerResponse> userCredentialsObserver;
-    DisposableObserver<List<QuestionModel>> questionModelObserver;
+    private DisposableObserver<WallpaperList> wallpaperObserver;
+    private DisposableObserver<ServerResponse> userCredentialsObserver;
+    private DisposableObserver<List<QuestionModel>> questionModelObserver;
 
     public Service(NetworkService networkService) {
         this.networkService = networkService;
@@ -57,13 +58,10 @@ public class Service {
 
             }
         };
-
-        networkService.getWallpapers()
+        addDisposable(networkService.getWallpapers()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(wallpaperObserver);
-
-        compositeDisposable.add(wallpaperObserver);
+                .subscribeWith(wallpaperObserver));
     }
 
     public void getQuestions(final QuestionCallBack callBack){
@@ -85,12 +83,10 @@ public class Service {
             }
         };
 
-        networkService.getQuestions()
+        addDisposable(networkService.getQuestions()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(questionModelObserver);
-
-        compositeDisposable.add(questionModelObserver);
+                .subscribeWith(questionModelObserver));
     }
 
     public void submitUserCredentials(UserCredentials userCredentials, final UserCallBack callBack){
@@ -112,12 +108,10 @@ public class Service {
             }
         };
 
-        networkService.submitLogin(userCredentials)
+        addDisposable(networkService.submitLogin(userCredentials)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(userCredentialsObserver);
-
-        compositeDisposable.add(userCredentialsObserver);
+                .subscribeWith(userCredentialsObserver));
     }
 
     public void destroy(int observer){
@@ -125,16 +119,22 @@ public class Service {
                 switch (observer){
                     case WALLPAPER_OBSERVER:
                         if(wallpaperObserver!=null)
-                            compositeDisposable.delete(wallpaperObserver);
+                            compositeDisposable.remove(wallpaperObserver);
                         break;
                     case USER_OBSERVER:
                         if(userCredentialsObserver!=null)
-                            compositeDisposable.delete(userCredentialsObserver);
+                            compositeDisposable.remove(userCredentialsObserver);
                         break;
                     case QUESTION_OBSERVER:
                         if(questionModelObserver!=null)
-                            compositeDisposable.delete(questionModelObserver);
+                            compositeDisposable.remove(questionModelObserver);
                         break;
                 }
+    }
+
+    private void addDisposable(Disposable disposable) {
+        Preconditions.checkNotNull(disposable);
+        Preconditions.checkNotNull(compositeDisposable);
+        compositeDisposable.add(disposable);
     }
 }
